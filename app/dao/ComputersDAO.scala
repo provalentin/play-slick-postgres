@@ -45,7 +45,7 @@ class ComputersDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvi
 
   /** Return a page of (Computer,Company) */
   def list(page: Int = 0, pageSize: Int = 10, orderBy: Int = 1, filter: String = "%"): Future[Page[(Computer, Company)]] = {
-
+    println("ComputersDAO: list: " + page + pageSize)
     val offset = pageSize * page
     val query =
       (for {
