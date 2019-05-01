@@ -96,6 +96,7 @@ class Application @Inject() (companiesDao:CompaniesDAO, computersDao:ComputersDA
     computerForm.bindFromRequest.fold(
       formWithErrors => companiesDao.options().map(options => BadRequest(html.createForm(formWithErrors, options))),
       computer => {
+        println("Saving computer: " + computer)
         for {
           _ <- computersDao.insert(computer)
         } yield Home.flashing("success" -> "Computer %s has been created".format(computer.name))
